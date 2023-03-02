@@ -22,6 +22,8 @@ extension AddContactVC {
         }
             
         imageView.image = image
+        
+        doneButton.isEnabled = true
             
         dismiss(animated: true)
     }

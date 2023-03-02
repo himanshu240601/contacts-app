@@ -21,7 +21,7 @@ class SortContacts {
     
     // MARK: methods
     func createSectionTitles(contactsCRUD: ContactCRUD) {
-        sectionTitles = Array(Set(contactsCRUD.contactObjectsArray.compactMap({String($0.name.prefix(1)).uppercased()})))
+        sectionTitles = Array(Set(contactsCRUD.contactObjectsArray.compactMap({String($0.getFullName().prefix(1)).uppercased()})))
         sectionTitles.sort()
         
         setDataForSections(contactsCRUD: contactsCRUD)
@@ -35,13 +35,13 @@ class SortContacts {
         
         //add data to the dictionary
         for contact in contactsCRUD.contactObjectsArray{
-            sortedContactList[String(contact.name.prefix(1)).uppercased()]?.append(contact)
+            sortedContactList[String(contact.getFullName().prefix(1)).uppercased()]?.append(contact)
         }
         
         //sort names in each array inside dictionary
         for (key, _) in sortedContactList {
             sortedContactList[key] = sortedContactList[key]?.sorted(by: {
-                $0.name.uppercased() < $1.name.uppercased()
+                $0.getFullName().uppercased() < $1.getFullName().uppercased()
             })
         }
     }

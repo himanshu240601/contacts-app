@@ -14,7 +14,7 @@ extension ContactDetailVC {
     
     //set values in of name and text
     func setDataValues() {
-        nameLabel.text = data?.0.name ?? ""
+        nameLabel.text = data?.0.getFullName()
         contactImageView.image = data?.0.image
         toggleButtons(checkMobileNumber())
     }

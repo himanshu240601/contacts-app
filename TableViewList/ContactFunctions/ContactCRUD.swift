@@ -20,13 +20,15 @@ class ContactCRUD {
     private init() {}
     
     // MARK: methods
-    func addContact(name: String, number: [(String, String)]) {
-        let contact = Contacts(name: name, mobile: number)
+    func addContact(firstname: String, lastname: String,
+                    number: [(String, String)],
+                    image: UIImage) {
+        let contact = Contacts(firstname: firstname, lastname: lastname, mobile: number, image: image)
         contactObjectsArray.insert(contact, at: 0)
-        
         sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
     }
     
+    // MARK: currently not using this function
     func deleteContact(indexPath: IndexPath) {
         let contact = sortContacts
             .sortedContactList[
@@ -36,15 +38,15 @@ class ContactCRUD {
 //        removing elements from the data
 //        so no element is regenerated when a new value
 //        is added
-        for i in 0..<contactObjectsArray.count {
-            if (contact?.mobile.count == 0 && contactObjectsArray[i].mobile.count == 0){
-                continue
-            }
-            if (contact?.mobile[0].1 == contactObjectsArray[i].mobile[0].1 && contact?.name == contactObjectsArray[i].name) {
-                contactObjectsArray.remove(at: i)
-                break
-            }
-        }
+//        for i in 0..<contactObjectsArray.count {
+//            if (contact?.mobile.count == 0 && contactObjectsArray[i].mobile.count == 0){
+//                continue
+//            }
+//            if (contact?.mobile[0].1 == contactObjectsArray[i].mobile[0].1 && contact?.firstname == contactObjectsArray[i].firstname) {
+//                contactObjectsArray.remove(at: i)
+//                break
+//            }
+//        }
         
 //        remove entire key from sortContactList
         if sortContacts
@@ -56,9 +58,16 @@ class ContactCRUD {
         }
     }
     
-    func updateContact(contact: Contacts, name: String, number: [(String, String)]) {
-        contact.name = name
+    func updateContact(
+        contact: Contacts,
+        firstname: String, lastname: String,
+                        number: [(String, String)],
+                        image: UIImage
+    ) {
+        contact.firstname = firstname
+        contact.lastname = lastname
         contact.mobile = number
+        contact.image = image
 
         sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
     }

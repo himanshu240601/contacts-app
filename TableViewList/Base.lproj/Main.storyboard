@@ -127,6 +127,42 @@
                                             <outlet property="textField" destination="r6f-ec-XA3" id="cFl-5k-Vzl"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addPhone" id="MGV-4U-PLK" customClass="TextFieldCell" customModule="TableViewList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="104" width="393" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MGV-4U-PLK" id="sgC-94-34w">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-ud-APT">
+                                                    <rect key="frame" x="12" y="10" width="34" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="gWr-rg-5GK"/>
+                                                        <constraint firstAttribute="width" constant="34" id="udR-SW-Ah9"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled">
+                                                        <imageReference key="image" image="plus" catalog="system" symbolScale="medium"/>
+                                                        <backgroundConfiguration key="background" cornerRadius="1000"/>
+                                                    </buttonConfiguration>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-aI-bOa">
+                                                    <rect key="frame" x="62" y="16.666666666666668" width="299" height="21.000000000000004"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Nsv-ud-APT" firstAttribute="centerY" secondItem="sgC-94-34w" secondAttribute="centerY" id="5t9-fr-CJI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XDG-aI-bOa" secondAttribute="trailing" constant="12" id="Ets-yd-o4g"/>
+                                                <constraint firstItem="Nsv-ud-APT" firstAttribute="leading" secondItem="sgC-94-34w" secondAttribute="leading" constant="12" id="QCq-8v-wOE"/>
+                                                <constraint firstItem="XDG-aI-bOa" firstAttribute="centerY" secondItem="sgC-94-34w" secondAttribute="centerY" id="TPT-mp-wJM"/>
+                                                <constraint firstItem="XDG-aI-bOa" firstAttribute="leading" secondItem="Nsv-ud-APT" secondAttribute="trailing" constant="16" id="nld-kO-IHV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="G9R-8O-5Ih" id="m55-sY-m2a"/>
@@ -157,6 +193,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9vX-XB-pgn"/>
                     <connections>
+                        <outlet property="addImageButton" destination="pOk-Lh-dpf" id="Vmj-fS-nRS"/>
                         <outlet property="doneButton" destination="j2n-lG-hF7" id="CDK-iU-Eap"/>
                         <outlet property="imageView" destination="g8T-io-bdE" id="62a-rZ-BbM"/>
                         <outlet property="tableView" destination="Ptc-BJ-QIk" id="cgQ-U9-W6G"/>
@@ -222,7 +259,7 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="74" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pIR-CF-LeG">
                                 <rect key="frame" x="24" y="371.33333333333326" width="345" height="446.66666666666674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contact" id="Uhj-eu-157" customClass="TableViewContactCell" customModule="TableViewList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="345" height="74"/>
@@ -293,7 +330,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x2X-RO-NH1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="x2X-RO-NH1" firstAttribute="trailing" secondItem="pIR-CF-LeG" secondAttribute="trailing" constant="24" id="2Up-ax-VAn"/>
                             <constraint firstItem="pIR-CF-LeG" firstAttribute="leading" secondItem="x2X-RO-NH1" secondAttribute="leading" constant="24" id="2um-Cl-rBB"/>
@@ -352,6 +389,7 @@
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

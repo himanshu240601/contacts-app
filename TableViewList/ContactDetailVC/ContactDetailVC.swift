@@ -36,9 +36,12 @@ class ContactDetailVC: UIViewController {
         
         contactArr = data?.0.mobile ?? []
         contactImageView.layer.cornerRadius = 50
+        
         navigationItem
             .rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUpdateContact))
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setDataValues()
     }
     
@@ -48,5 +51,6 @@ class ContactDetailVC: UIViewController {
             return
         }
         destinationViewController.hideTitle = true
+        destinationViewController.data = self.data
     }
 }

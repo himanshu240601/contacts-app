@@ -21,9 +21,9 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Contact", for: indexPath)
-        
+        let contact = sortContacts.sortedContactList[sortContacts.sectionTitles[indexPath.section]]?[indexPath.row]
         cell.textLabel?
-            .text = sortContacts.sortedContactList[sortContacts.sectionTitles[indexPath.section]]?[indexPath.row].name
+            .text = contact?.getFullName()
         
         return cell
     }
@@ -45,8 +45,13 @@ extension ViewController {
     // MARK: navigate to next view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationViewController = segue.destination as? ContactDetailVC else {
+            guard let destination = segue.destination as? AddContactVC else {
+                return
+            }
+            destination.viewControllerInst = sender as? ViewController
             return
         }
         destinationViewController.data = sender as? (Contacts, IndexPath)
     }
+    
 }

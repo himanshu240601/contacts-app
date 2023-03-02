@@ -12,6 +12,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     // MARK: outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var addImageButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,13 +23,29 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     // MARK: properties
     var placeholderText = ["First Name", "Last Name", "Company"]
     var textFieldsArr = [String: UITextField]()
-    
+    //data from previous controller (ContactDetailVC)
+    //in case the previous controller is Root VC
+    //then the data will be nil
+    var data: (Contacts, IndexPath)?
+    var viewControllerInst: ViewController?
     // MARK: lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //corner radius for contact image
         imageView.layer.cornerRadius = 50
         
+        //change text of 'Add Photo' button
+        //if the image is not default
+        if data != nil {
+            if data?.0.image != UIImage(systemName: "person.circle.fill") {
+                addImageButton.setTitle("Edit", for: .normal)
+                imageView.image = data?.0.image
+            }
+        }
+        
+        //hide title if previous view controller is ContactDetailVC
+        //note - It's opened for editing not adding new contact
         if hideTitle {
             titleLabel.isHidden = true
         }
@@ -52,7 +69,25 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        //add/update contact in the list
+        let firstName = textFieldsArr[placeholderText[0]]?.text ?? ""
+        let lastName = textFieldsArr[placeholderText[1]]?.text ?? ""
+        let image = imageView.image
+        let number = [("Name", "Number")]
+        
+        if let data = data?.0 {
+            ContactCRUD
+                .contactCRUD
+                .updateContact(contact: data, firstname: firstName, lastname: lastName, number: number, image: image!)
+        }
+        else if viewControllerInst != nil {
+            ContactCRUD
+                .contactCRUD
+                .addContact(firstname: firstName, lastname: lastName, number: number, image: image!)
+            
+            viewControllerInst?.tableView.reloadData()
+        }
+        
+        dismiss(animated: true)
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: UIButton) {

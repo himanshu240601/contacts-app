@@ -19,7 +19,7 @@ extension ContactDetailVC: UITableViewDelegate, UITableViewDataSource {
             fatalError("error")
         }
         
-        cell.contactTypeLabel.text = contactArr[indexPath.row].0.capitalized
+        cell.contactTypeLabel.text = contactArr[indexPath.row].0
         cell.mobileNumberLabel.text = contactArr[indexPath.row].1
         
         return cell
