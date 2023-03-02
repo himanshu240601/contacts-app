@@ -35,7 +35,7 @@
                     <navigationItem key="navigationItem" title="Contacts" id="lM6-IH-OKd"/>
                     <connections>
                         <segue destination="8h2-3e-ucp" kind="show" identifier="ViewContact" id="Rfm-9P-GQI"/>
-                        <segue destination="G9R-8O-5Ih" kind="presentation" identifier="EditContact" id="8IT-QE-WJe"/>
+                        <segue destination="G9R-8O-5Ih" kind="presentation" identifier="AddContact" id="8IT-QE-WJe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ds-cG-XzW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -47,11 +47,11 @@
             <objects>
                 <viewController id="G9R-8O-5Ih" customClass="AddContactVC" customModule="TableViewList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sEH-wF-5zy">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-P3-KUl">
-                                <rect key="frame" x="12" y="86" width="76.666666666666671" height="35"/>
+                                <rect key="frame" x="12" y="76" width="76.666666666666671" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
                                 <connections>
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2n-lG-hF7">
-                                <rect key="frame" x="316.66666666666669" y="86" width="64.333333333333314" height="35"/>
+                                <rect key="frame" x="316.66666666666669" y="76" width="64.333333333333314" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
                                 <connections>
@@ -67,13 +67,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVn-IM-iL0">
-                                <rect key="frame" x="143" y="93" width="107" height="21"/>
+                                <rect key="frame" x="143" y="83" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-io-bdE">
-                                <rect key="frame" x="146.66666666666666" y="139" width="100" height="98.666666666666686"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-io-bdE">
+                                <rect key="frame" x="146.66666666666666" y="121" width="100" height="98.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="GlK-XA-siD"/>
                                     <constraint firstAttribute="height" constant="100" id="jDJ-e5-f1x"/>
@@ -87,7 +87,7 @@
                                 </imageReference>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOk-Lh-dpf">
-                                <rect key="frame" x="150.66666666666666" y="238" width="92" height="31"/>
+                                <rect key="frame" x="150.66666666666666" y="220" width="92" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add Photo">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ptc-BJ-QIk">
-                                <rect key="frame" x="0.0" y="293" width="393" height="490"/>
+                                <rect key="frame" x="0.0" y="267" width="393" height="551"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -137,18 +137,18 @@
                         <viewLayoutGuide key="safeArea" id="5ho-vy-mdb"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="Ptc-BJ-QIk" firstAttribute="top" secondItem="pOk-Lh-dpf" secondAttribute="bottom" constant="24" id="1fY-aZ-ByG"/>
+                            <constraint firstItem="Ptc-BJ-QIk" firstAttribute="top" secondItem="pOk-Lh-dpf" secondAttribute="bottom" constant="16" id="1fY-aZ-ByG"/>
                             <constraint firstItem="lXp-P3-KUl" firstAttribute="leading" secondItem="5ho-vy-mdb" secondAttribute="leading" constant="12" id="DCQ-u0-6up"/>
                             <constraint firstItem="pOk-Lh-dpf" firstAttribute="centerX" secondItem="sEH-wF-5zy" secondAttribute="centerX" id="EUT-rH-z5w"/>
                             <constraint firstItem="5ho-vy-mdb" firstAttribute="trailing" secondItem="Ptc-BJ-QIk" secondAttribute="trailing" id="HOS-We-4Hw"/>
                             <constraint firstItem="Ptc-BJ-QIk" firstAttribute="leading" secondItem="5ho-vy-mdb" secondAttribute="leading" id="Jh1-B3-7h9"/>
                             <constraint firstItem="aVn-IM-iL0" firstAttribute="centerX" secondItem="sEH-wF-5zy" secondAttribute="centerX" id="LmK-8p-zPh"/>
-                            <constraint firstItem="g8T-io-bdE" firstAttribute="top" secondItem="aVn-IM-iL0" secondAttribute="bottom" constant="24" id="Mfa-g0-uyj"/>
+                            <constraint firstItem="g8T-io-bdE" firstAttribute="top" secondItem="aVn-IM-iL0" secondAttribute="bottom" constant="16" id="Mfa-g0-uyj"/>
                             <constraint firstItem="aVn-IM-iL0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lXp-P3-KUl" secondAttribute="trailing" constant="8" symbolic="YES" id="PrT-bL-neA"/>
                             <constraint firstItem="j2n-lG-hF7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aVn-IM-iL0" secondAttribute="trailing" constant="8" symbolic="YES" id="Rff-GB-Mhh"/>
                             <constraint firstItem="lXp-P3-KUl" firstAttribute="centerY" secondItem="aVn-IM-iL0" secondAttribute="centerY" id="Vpu-3Z-Am1"/>
                             <constraint firstItem="pOk-Lh-dpf" firstAttribute="top" secondItem="g8T-io-bdE" secondAttribute="bottom" id="Yfm-Vh-s7w"/>
-                            <constraint firstItem="aVn-IM-iL0" firstAttribute="top" secondItem="5ho-vy-mdb" secondAttribute="top" constant="34" id="Zen-JL-ckJ"/>
+                            <constraint firstItem="aVn-IM-iL0" firstAttribute="top" secondItem="5ho-vy-mdb" secondAttribute="top" constant="24" id="Zen-JL-ckJ"/>
                             <constraint firstItem="5ho-vy-mdb" firstAttribute="bottom" secondItem="Ptc-BJ-QIk" secondAttribute="bottom" id="kp9-KM-14P"/>
                             <constraint firstItem="5ho-vy-mdb" firstAttribute="trailing" secondItem="j2n-lG-hF7" secondAttribute="trailing" constant="12" id="pIf-d1-v3m"/>
                             <constraint firstItem="g8T-io-bdE" firstAttribute="centerX" secondItem="sEH-wF-5zy" secondAttribute="centerX" id="rqN-as-sh9"/>
@@ -160,6 +160,7 @@
                         <outlet property="doneButton" destination="j2n-lG-hF7" id="CDK-iU-Eap"/>
                         <outlet property="imageView" destination="g8T-io-bdE" id="62a-rZ-BbM"/>
                         <outlet property="tableView" destination="Ptc-BJ-QIk" id="cgQ-U9-W6G"/>
+                        <outlet property="titleLabel" destination="aVn-IM-iL0" id="TfO-Vd-hw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2XM-N4-b6y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -174,7 +175,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="N8l-hi-F7F">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="N8l-hi-F7F">
                                 <rect key="frame" x="146.66666666666666" y="128" width="100" height="98.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="23g-Fr-ay4"/>
@@ -316,6 +317,7 @@
                         <outlet property="emailButton" destination="idH-xr-T5g" id="M4b-oc-apG"/>
                         <outlet property="messageButton" destination="TRN-yt-HMJ" id="yC9-89-4lO"/>
                         <outlet property="nameLabel" destination="3wV-kt-lwc" id="x7X-Tu-y1U"/>
+                        <segue destination="G9R-8O-5Ih" kind="presentation" identifier="EditContact" modalPresentationStyle="fullScreen" id="4an-E4-DFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVe-VI-ZC3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -341,6 +343,9 @@
             <point key="canvasLocation" x="-43.511450381679388" y="-134.50704225352112"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4an-E4-DFk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="envelope.fill" catalog="system" width="128" height="93"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>

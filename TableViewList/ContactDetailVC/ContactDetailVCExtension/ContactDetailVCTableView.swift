@@ -5,12 +5,11 @@
 //  Created by Himanshu on 3/2/23.
 //
 
-import Foundation
 import UIKit
 
 extension ContactDetailVC: UITableViewDelegate, UITableViewDataSource {
     
-    
+    //MARK: table view methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactArr.count
     }

@@ -35,10 +35,18 @@ class ContactDetailVC: UIViewController {
         super.viewDidLoad()
         
         contactArr = data?.0.mobile ?? []
-        
+        contactImageView.layer.cornerRadius = 50
         navigationItem
             .rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUpdateContact))
         
         setDataValues()
+    }
+    
+    // MARK: navigate to next view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationViewController = segue.destination as? AddContactVC else {
+            return
+        }
+        destinationViewController.hideTitle = true
     }
 }

@@ -7,13 +7,17 @@
 
 import UIKit
 
-class AddContactVC: UIViewController {
+class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     // MARK: outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    var hideTitle: Bool = false
     
     // MARK: properties
     var placeholderText = ["First Name", "Last Name", "Company"]
@@ -22,6 +26,12 @@ class AddContactVC: UIViewController {
     // MARK: lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView.layer.cornerRadius = 50
+        
+        if hideTitle {
+            titleLabel.isHidden = true
+        }
     }
 
     // MARK: actions
@@ -42,9 +52,13 @@ class AddContactVC: UIViewController {
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
+        //add/update contact in the list
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: UIButton) {
-        
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }
