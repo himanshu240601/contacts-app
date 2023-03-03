@@ -29,6 +29,7 @@
 		6A84DB0F29B1C3F90071D2B6 /* ViewControllerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB0E29B1C3F90071D2B6 /* ViewControllerSearch.swift */; };
 		6A84DB1129B1CE360071D2B6 /* PhoneTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB1029B1CE360071D2B6 /* PhoneTextFieldCell.swift */; };
 		6A84DB1329B1FC000071D2B6 /* AddContactTableUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB1229B1FC000071D2B6 /* AddContactTableUtility.swift */; };
+		6A84DB1829B214E00071D2B6 /* LabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */; };
 		6AD86BF729A5D52A001965E6 /* StaticData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BF629A5D52A001965E6 /* StaticData.swift */; };
 		6AD86BF929A5D64B001965E6 /* SortContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BF829A5D64B001965E6 /* SortContacts.swift */; };
 		6AD86BFE29A612C3001965E6 /* ViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BFD29A612C3001965E6 /* ViewControllerTableView.swift */; };
@@ -81,6 +82,7 @@
 		6A84DB0E29B1C3F90071D2B6 /* ViewControllerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSearch.swift; sourceTree = "<group>"; };
 		6A84DB1029B1CE360071D2B6 /* PhoneTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldCell.swift; sourceTree = "<group>"; };
 		6A84DB1229B1FC000071D2B6 /* AddContactTableUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactTableUtility.swift; sourceTree = "<group>"; };
+		6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsTableViewController.swift; sourceTree = "<group>"; };
 		6AD86BF629A5D52A001965E6 /* StaticData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticData.swift; sourceTree = "<group>"; };
 		6AD86BF829A5D64B001965E6 /* SortContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContacts.swift; sourceTree = "<group>"; };
 		6AD86BFD29A612C3001965E6 /* ViewControllerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		6A27297829A47F2A000B62D1 /* TableViewList */ = {
 			isa = PBXGroup;
 			children = (
+				6A84DB1429B214910071D2B6 /* LabelViewController */,
 				6A66229329B0807600C814A5 /* AddContactController */,
 				6AD86C0729A6159A001965E6 /* MainViewController */,
 				6AD86C0629A61581001965E6 /* ContactDetailVC */,
@@ -231,6 +234,14 @@
 				6A84DB1229B1FC000071D2B6 /* AddContactTableUtility.swift */,
 			);
 			path = AddContactVCExtension;
+			sourceTree = "<group>";
+		};
+		6A84DB1429B214910071D2B6 /* LabelViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */,
+			);
+			path = LabelViewController;
 			sourceTree = "<group>";
 		};
 		6AD86BF529A5D516001965E6 /* StaticData */ = {
@@ -422,6 +433,7 @@
 				6A66229229B06AC100C814A5 /* ContactDetailVCTableView.swift in Sources */,
 				6AD86C0029A6134A001965E6 /* ViewControllerContactMod.swift in Sources */,
 				6A84DB0F29B1C3F90071D2B6 /* ViewControllerSearch.swift in Sources */,
+				6A84DB1829B214E00071D2B6 /* LabelsTableViewController.swift in Sources */,
 				6A66229F29B0965F00C814A5 /* AddContactTableView.swift in Sources */,
 				6AD86BF729A5D52A001965E6 /* StaticData.swift in Sources */,
 				6A66229529B0809300C814A5 /* AddContactVC.swift in Sources */,

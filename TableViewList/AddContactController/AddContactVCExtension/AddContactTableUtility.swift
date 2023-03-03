@@ -17,6 +17,9 @@ extension AddContactVC {
             if let number = data?.0.mobile[indexPath.row].1 {
                 cell.phoneTextField.text = number
             }
+        } else {
+            cell.phoneTypeButton.setTitle("Mobile", for: .normal)
+            cell.phoneTextField.text = ""
         }
     }
     
@@ -82,4 +85,26 @@ extension AddContactVC {
         present(actionSheet, animated: true)
     }
     
+    @objc func goToLabelsVC(sender: UIButton, forEvent event: UIEvent) {
+        
+        for (i, cell) in addContactCellsArr.enumerated() {
+            if cell != nil && cell?.phoneTypeButton.titleLabel == sender.titleLabel {
+                buttonTag = i
+                break
+            }
+        }
+        
+        performSegue(withIdentifier: "labelsVC", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? LabelsTableViewController else{
+            return
+        }
+        destination.addContactVC = self
+    }
+    
+    func setContactTypeValue(_ text: String){
+        addContactCellsArr[buttonTag]?.phoneTypeButton.setTitle(text, for: .normal)
+    }
 }

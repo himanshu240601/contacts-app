@@ -80,6 +80,9 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
                 fatalError("error")
             }
             cell.phoneTextField.addTarget(self, action: #selector(changeDoneButtonState), for: .editingChanged)
+            cell.phoneTypeButton.tag = indexPath.row
+            
+            cell.phoneTypeButton.addTarget(self, action: #selector(goToLabelsVC), for: .touchUpInside)
             
             addContactCellsArr.insert(cell, at: 0)
             
@@ -122,13 +125,25 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             addContactCells -= 1
+            let numberDel = addContactCellsArr[indexPath.row]?.phoneTextField.text
+            let typeDel = addContactCellsArr[indexPath.row]?.phoneTypeButton.titleLabel?.text
             addContactCellsArr.remove(at: indexPath.row)
-            
-            //TODO: remove cells if it contain data and do not reinsert
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             
-            doneButton.isEnabled = true
+            if data?.0.mobile.count ?? 0 > 0 {
+                var number = getPhoneNumbers()
+                
+                //remove number
+                for (i, value) in number.enumerated() {
+                    if (value.0 == typeDel && value.1 == numberDel){
+                        number.remove(at: i)
+                        break
+                    }
+                }
+                data?.0.mobile = number
+            }
+            changeDoneButtonState()
         }
     }
     

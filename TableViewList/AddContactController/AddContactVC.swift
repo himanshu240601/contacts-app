@@ -25,12 +25,15 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     var addContactCellsArr: [PhoneTextField?] = [nil]
     var addContactCells = 1
     var textFieldsArr = [String: UITextField]()
+    var buttonTag: Int = 0
     //data from previous controller (ContactDetailVC)
     //in case the previous controller is Root VC
     //then the data will be nil
     var data: (Contacts, IndexPath)?
     var contactDetailVC: ContactDetailVC?
     var viewControllerInst: ViewController?
+    
+    
     // MARK: lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
                 addImageButton.setTitle("Edit", for: .normal)
                 imageView.image = data?.0.image
             }
-            addContactCells += data?.0.mobile.count ?? 0    
+            addContactCells += data?.0.mobile.count ?? 0
         }
         
         //hide title if previous view controller is ContactDetailVC
