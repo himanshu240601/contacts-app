@@ -22,11 +22,14 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     
     // MARK: properties
     var placeholderText = ["First Name", "Last Name", "Company"]
+    var addContactCellsArr: [PhoneTextField?] = [nil]
+    var addContactCells = 1
     var textFieldsArr = [String: UITextField]()
     //data from previous controller (ContactDetailVC)
     //in case the previous controller is Root VC
     //then the data will be nil
     var data: (Contacts, IndexPath)?
+    var contactDetailVC: ContactDetailVC?
     var viewControllerInst: ViewController?
     // MARK: lifecycle methods
     override func viewDidLoad() {
@@ -42,6 +45,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
                 addImageButton.setTitle("Edit", for: .normal)
                 imageView.image = data?.0.image
             }
+            addContactCells += data?.0.mobile.count ?? 0    
         }
         
         //hide title if previous view controller is ContactDetailVC
@@ -49,6 +53,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         if hideTitle {
             titleLabel.isHidden = true
         }
+        tableView.isEditing = true
     }
 
     // MARK: actions
@@ -72,7 +77,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         let firstName = textFieldsArr[placeholderText[0]]?.text ?? ""
         let lastName = textFieldsArr[placeholderText[1]]?.text ?? ""
         let image = imageView.image
-        let number = [("Name", "Number")]
+        let number = getPhoneNumbers()
         
         if let data = data?.0 {
             ContactCRUD
@@ -83,6 +88,8 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
             ContactCRUD
                 .contactCRUD
                 .addContact(firstname: firstName, lastname: lastName, number: number, image: image!)
+            
+            viewControllerInst?.resetData()
             
             viewControllerInst?.tableView.reloadData()
         }
@@ -95,5 +102,23 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
+    }
+    
+    //get phone numbers from dynamically generated
+    //cell in the table view
+    func getPhoneNumbers() -> [(String, String)] {
+        var numbersArr: [(String, String)] = []
+        
+        for cells in addContactCellsArr {
+            if let type = cells?.phoneTypeButton.titleLabel?.text {
+                if let number = cells?.phoneTextField?.text {
+                    if number != "" {
+                        numbersArr.append((type, number))
+                    }
+                }
+            }
+        }
+        
+        return numbersArr
     }
 }

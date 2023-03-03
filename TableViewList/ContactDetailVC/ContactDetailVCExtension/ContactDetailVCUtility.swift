@@ -14,7 +14,12 @@ extension ContactDetailVC {
     
     //set values in of name and text
     func setDataValues() {
-        nameLabel.text = data?.0.getFullName()
+        nameLabel.text = {
+            if data?.0.getFullName() == "#" {
+                return ""
+            }
+            return data?.0.getFullName()
+        }()
         contactImageView.image = data?.0.image
         toggleButtons(checkMobileNumber())
     }
@@ -31,5 +36,9 @@ extension ContactDetailVC {
         callButton.isEnabled = enabled
         messageButton.isEnabled = enabled
         emailButton.isEnabled = enabled
+    }
+    
+    func popToRootVC() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

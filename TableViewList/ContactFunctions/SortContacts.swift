@@ -21,7 +21,11 @@ class SortContacts {
     
     // MARK: methods
     func createSectionTitles(contactsCRUD: ContactCRUD) {
-        sectionTitles = Array(Set(contactsCRUD.contactObjectsArray.compactMap({String($0.getFullName().prefix(1)).uppercased()})))
+        sectionTitles = Array(Set(contactsCRUD.contactObjectsArray.compactMap(
+            {
+                String($0.getFullName().prefix(1)).uppercased()
+            }))
+        )
         sectionTitles.sort()
         
         setDataForSections(contactsCRUD: contactsCRUD)

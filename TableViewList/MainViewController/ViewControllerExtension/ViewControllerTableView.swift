@@ -12,34 +12,42 @@ extension ViewController {
     
     // MARK: creating tableview sections and cells
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sortContacts.sectionTitles.count
+        return sectionTitlesTemp.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortContacts.sortedContactList[sortContacts.sectionTitles[section]]?.count ?? 0
+        return sortedContactListTemp[sectionTitlesTemp[section]]?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Contact", for: indexPath)
-        let contact = sortContacts.sortedContactList[sortContacts.sectionTitles[indexPath.section]]?[indexPath.row]
+        let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
         cell.textLabel?
-            .text = contact?.getFullName()
+            .text = {
+                if contact?.getFullName() == "#" {
+                    return contact?.mobile[0].1
+                }
+                return contact?.getFullName()
+            }()
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = sortContacts.sortedContactList[sortContacts.sectionTitles[indexPath.section]]?[indexPath.row]
+        let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
         performSegue(withIdentifier: "ViewContact", sender: (contact, indexPath))
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.tableView(tableView, numberOfRowsInSection: section) == 0{
+            return nil
+        }
         return sortContacts.sectionTitles[section]
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         tableView.sectionIndexColor = .placeholderText
-        return sortContacts.sectionTitles
+        return sectionTitlesTemp
     }
     
     // MARK: navigate to next view controller

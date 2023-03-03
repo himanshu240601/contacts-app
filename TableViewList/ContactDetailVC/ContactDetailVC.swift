@@ -52,5 +52,6 @@ class ContactDetailVC: UIViewController {
         }
         destinationViewController.hideTitle = true
         destinationViewController.data = self.data
+        destinationViewController.contactDetailVC = self
     }
 }

@@ -38,15 +38,12 @@ class ContactCRUD {
 //        removing elements from the data
 //        so no element is regenerated when a new value
 //        is added
-//        for i in 0..<contactObjectsArray.count {
-//            if (contact?.mobile.count == 0 && contactObjectsArray[i].mobile.count == 0){
-//                continue
-//            }
-//            if (contact?.mobile[0].1 == contactObjectsArray[i].mobile[0].1 && contact?.firstname == contactObjectsArray[i].firstname) {
-//                contactObjectsArray.remove(at: i)
-//                break
-//            }
-//        }
+        for i in 0..<contactObjectsArray.count {
+            if (contact?.getFullName() == contactObjectsArray[i].getFullName()) {
+                contactObjectsArray.remove(at: i)
+                break
+            }
+        }
         
 //        remove entire key from sortContactList
         if sortContacts
@@ -56,6 +53,8 @@ class ContactCRUD {
 
             sortContacts.sortedContactList.removeValue(forKey: sortContacts.sectionTitles[indexPath.section])
         }
+        
+        sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
     }
     
     func updateContact(

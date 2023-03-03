@@ -26,14 +26,14 @@ class Contacts {
     
     // MARK: methods
     func getFullName () -> String {
-        let firstName = firstname
-        let lastName = lastname
-        
-        if firstName == "" {
-            return lastName
-        }else if lastName == "" {
-            return firstName
+        if firstname == "" && lastname != "" {
+            return lastname
+        }else if lastname == "" && firstname != "" {
+            return firstname
         }
-        return firstName + " " + lastName
+        else if firstname != "" && lastname != ""{
+            return firstname + " " + lastname
+        }
+        return "#"
     }
 }
