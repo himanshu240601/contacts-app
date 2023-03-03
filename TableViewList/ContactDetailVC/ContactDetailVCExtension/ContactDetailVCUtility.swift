@@ -21,6 +21,7 @@ extension ContactDetailVC {
             return data?.0.getFullName()
         }()
         contactImageView.image = data?.0.image
+        contactArr = data?.0.mobile ?? []
         toggleButtons(checkMobileNumber())
     }
     

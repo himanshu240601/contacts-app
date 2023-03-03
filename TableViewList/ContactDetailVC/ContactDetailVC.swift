@@ -33,8 +33,6 @@ class ContactDetailVC: UIViewController {
     // MARK: lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        contactArr = data?.0.mobile ?? []
         contactImageView.layer.cornerRadius = 50
         
         navigationItem
@@ -43,6 +41,7 @@ class ContactDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setDataValues()
+        contactsTableView.reloadData()
     }
     
     // MARK: navigate to next view controller

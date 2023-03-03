@@ -127,6 +127,8 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
             //TODO: remove cells if it contain data and do not reinsert
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            doneButton.isEnabled = true
         }
     }
     
