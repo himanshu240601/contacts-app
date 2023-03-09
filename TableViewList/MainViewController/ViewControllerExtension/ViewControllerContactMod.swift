@@ -11,6 +11,6 @@ import UIKit
 extension ViewController {
     
     @objc func openAddNewContact() {
-        performSegue(withIdentifier: "AddContact", sender: self)
+        performSegue(withIdentifier: constants.addContact, sender: self)
     }
 }

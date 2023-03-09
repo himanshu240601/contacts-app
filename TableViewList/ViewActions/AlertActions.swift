@@ -9,12 +9,14 @@ import UIKit
 
 class AlertActions {
     
+    let constants = Constants()
+    
     // MARK: methods
     //return alert controller for deletion
     func deleteContactAlert() -> UIAlertController {
-       let ac = UIAlertController(title: "Are You Sure?", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: constants.deleteAlert, message: nil, preferredStyle: .alert)
        
-       ac.addAction(UIAlertAction(title: "Cancel", style: .default))
+        ac.addAction(UIAlertAction(title: constants.cancel, style: .default))
         
        return ac
     }

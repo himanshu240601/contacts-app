@@ -15,8 +15,8 @@ extension ContactDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath) as? TableViewContactCell else {
-            fatalError("error")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath) as? TableViewContactCell else {
+            fatalError(constants.cellDequeueError)
         }
         
         cell.contactTypeLabel.text = contactArr[indexPath.row].0

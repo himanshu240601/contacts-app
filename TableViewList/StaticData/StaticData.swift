@@ -145,17 +145,15 @@ class StaticData {
         [("Mobile", "(446) 796-2839"), ("Home", "(446) 796-2839")],
         [("Mobile", "(446) 796-2839"), ("Home", "(446) 796-2839")],
     ]
+
     
-    static let numbersType = [
-        "Mobile", "Home", "Work", "School", "iPhone", "Apple Watch", "Main", "Home Fax", "Work Fax", "Pager", "Other"
-    ]
-    
+    let constants = Constants()
     
     // MARK: methods
     func generateDummyData(contactsCrud: ContactCRUD) {
         for i in 0..<namesArr.count {
             let names = namesArr[i].components(separatedBy: " ")
-            contactsCrud.addContact(firstname: names[0], lastname: names[1], number: numbersArr[i], image: UIImage(systemName: "person.circle.fill")!)
+            contactsCrud.addContact(firstname: names[0], lastname: names[1], number: numbersArr[i], image: UIImage(systemName: constants.defaultImage)!)
         }
     }
 }

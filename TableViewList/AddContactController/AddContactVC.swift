@@ -32,7 +32,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     var data: (Contacts, IndexPath)?
     var contactDetailVC: ContactDetailVC?
     var viewControllerInst: ViewController?
-    
+    let constants = Constants()
     
     // MARK: lifecycle methods
     override func viewDidLoad() {
@@ -44,8 +44,8 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         //change text of 'Add Photo' button
         //if the image is not default
         if data != nil {
-            if data?.0.image != UIImage(systemName: "person.circle.fill") {
-                addImageButton.setTitle("Edit", for: .normal)
+            if data?.0.image != UIImage(systemName: constants.defaultImage) {
+                addImageButton.setTitle(constants.editTitle, for: .normal)
                 imageView.image = data?.0.image
             }
             addContactCells += data?.0.mobile.count ?? 0
@@ -62,12 +62,12 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     // MARK: actions
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         if doneButton.isEnabled {
-            let bottomAction = UIAlertController(title: nil, message: "Are you sure you want to discard this new contact?", preferredStyle: .actionSheet)
+            let bottomAction = UIAlertController(title: nil, message: constants.discardMessage, preferredStyle: .actionSheet)
             
-            bottomAction.addAction(UIAlertAction(title: "Discard Changes", style: .destructive, handler: { UIAlertAction in
+            bottomAction.addAction(UIAlertAction(title: constants.discardChanges, style: .destructive, handler: { UIAlertAction in
                 self.dismiss(animated: true)
             }))
-            bottomAction.addAction(UIAlertAction(title: "Keep Editing", style: .default))
+            bottomAction.addAction(UIAlertAction(title: constants.keepEditing, style: .default))
             
             present(bottomAction, animated: true)
         }

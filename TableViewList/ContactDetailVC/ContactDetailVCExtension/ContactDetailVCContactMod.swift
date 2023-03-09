@@ -27,7 +27,7 @@ extension ContactDetailVC {
     
     //update contact
     @objc func openUpdateContact() {
-        performSegue(withIdentifier: "EditContact", sender: nil)
+        performSegue(withIdentifier: constants.editContact, sender: nil)
     }
     
 }

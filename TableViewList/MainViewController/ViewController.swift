@@ -20,6 +20,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     // MARK: properties
     var sortedContactListTemp: [String: [Contacts]] = [:]
     var sectionTitlesTemp: [String] = []
+    let constants = Constants()
     
     // MARK: lifecycle functions
     override func viewDidLoad() {

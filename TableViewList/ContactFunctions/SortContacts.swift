@@ -13,7 +13,7 @@ class SortContacts {
     
     // MARK: properties
     var sectionTitles: [String] = []
-    var sortedContactList: [String: [Contacts]] = [:]
+    var sortedContactList: [String: [Contacts ]] = [:]
     
     // MARK: initializers
     private init() {

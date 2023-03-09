@@ -47,7 +47,7 @@
             <objects>
                 <viewController id="G9R-8O-5Ih" customClass="AddContactVC" customModule="TableViewList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sEH-wF-5zy">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-P3-KUl">
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ptc-BJ-QIk">
-                                <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="515.33333333333326"/>
+                                <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="550.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -339,7 +339,7 @@
                                 <rect key="frame" x="24" y="371.33333333333326" width="345" height="446.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contact" id="Uhj-eu-157" customClass="TableViewContactCell" customModule="TableViewList" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Contact" id="Uhj-eu-157" customClass="TableViewContactCell" customModule="TableViewList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="345" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uhj-eu-157" id="cqP-5N-bh9">
@@ -361,6 +361,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2I-O4-4f3">
                                                                     <rect key="frame" x="0.0" y="0.0" width="297" height="26.666666666666668"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>
@@ -520,7 +521,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8IT-QE-WJe"/>
+        <segue reference="4an-E4-DFk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>

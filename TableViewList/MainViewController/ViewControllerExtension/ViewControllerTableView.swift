@@ -20,11 +20,11 @@ extension ViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Contact", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath)
         let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
         cell.textLabel?
             .text = {
-                if contact?.getFullName() == "#" {
+                if contact?.getFullName() == constants.defaultName {
                     return contact?.mobile[0].1
                 }
                 return contact?.getFullName()
@@ -35,7 +35,7 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
-        performSegue(withIdentifier: "ViewContact", sender: (contact, indexPath))
+        performSegue(withIdentifier: constants.viewContact, sender: (contact, indexPath))
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

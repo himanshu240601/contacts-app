@@ -27,6 +27,7 @@ class LabelsTableViewController: UIViewController, UITableViewDelegate, UITableV
         "Other"
     ]
     var addContactVC: AddContactVC?
+    let constants = Constants()
     
     // MARK: lifecycle methods
     override func viewDidLoad() {
@@ -55,7 +56,7 @@ extension LabelsTableViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "labelText", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: constants.labelText, for: indexPath)
         cell.textLabel?.text = lables[indexPath.row]
         
         return cell

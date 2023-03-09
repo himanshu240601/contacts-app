@@ -46,8 +46,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        else if indexPath.section == 1
-            && addContactCellsArr[indexPath.row] == addContactCellsArr[addContactCellsArr.count-1] {
+        else if tableView.cellForRow(at: indexPath)?.reuseIdentifier == constants.addPhone {
             
             addContactCells += 1
             
@@ -61,7 +60,7 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         
         //create delete button in section 2nd (i.e. the last section)
         if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "deleteContact", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: constants.deleteContact, for: indexPath)
             return cell
         }
         
@@ -69,16 +68,18 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         //one cell to add phone
         //which will remain at bottom
         if indexPath.section == 1 && (addContactCells == 1 || indexPath.row == addContactCells - 1) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "addPhone", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: constants.addPhone, for: indexPath)
             return cell
         }
         //this will run when the cell   with addPhoneIdentifier is clicked
         //adds phone text fields in the section where person can add the numbers
         else if indexPath.section == 1 && indexPath.row < addContactCellsArr.count {
             // get the cell as PhoneTextField
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "insertPhone", for: indexPath) as? PhoneTextField else {
-                fatalError("error")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.insertPhone, for: indexPath) as? PhoneTextField else {
+                fatalError(constants.cellDequeueError)
             }
+            cell.phoneTextField.keyboardType = .phonePad
+            
             cell.phoneTextField.addTarget(self, action: #selector(changeDoneButtonState), for: .editingChanged)
             cell.phoneTypeButton.tag = indexPath.row
             
@@ -94,8 +95,8 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         //default will remain same for section 0th
         //if section 0
         //three text fields will be added
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "textFields", for: indexPath) as? TextFieldCell else{
-            fatalError("error")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.textFields, for: indexPath) as? TextFieldCell else{
+            fatalError(constants.cellDequeueError)
         }
         
         cell.textField.placeholder = placeholderText[indexPath.row]

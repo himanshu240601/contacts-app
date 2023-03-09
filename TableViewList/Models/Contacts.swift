@@ -16,6 +16,8 @@ class Contacts {
     var mobile: [(String, String)]
     var image: UIImage?
     
+    let constants = Constants()
+    
     // MARK: initializers
     init(firstname: String, lastname: String, mobile: [(String, String)], image: UIImage) {
         self.firstname = firstname
@@ -34,6 +36,6 @@ class Contacts {
         else if firstname != "" && lastname != ""{
             return firstname + " " + lastname
         }
-        return "#"
+        return constants.defaultName
     }
 }

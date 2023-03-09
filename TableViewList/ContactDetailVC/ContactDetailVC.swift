@@ -21,8 +21,7 @@ class ContactDetailVC: UIViewController {
     
     // MARK: properties
     var data: (Contacts, IndexPath)?
-    
-    
+    let constants = Constants()
     
     // MARK: class objects
     var contactsCrud = ContactCRUD.contactCRUD

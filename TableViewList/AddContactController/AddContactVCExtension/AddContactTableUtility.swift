@@ -18,7 +18,7 @@ extension AddContactVC {
                 cell.phoneTextField.text = number
             }
         } else {
-            cell.phoneTypeButton.setTitle("Mobile", for: .normal)
+            cell.phoneTypeButton.setTitle(constants.defaultMobileType, for: .normal)
             cell.phoneTextField.text = ""
         }
     }
@@ -74,13 +74,13 @@ extension AddContactVC {
     func deleteContact(indexPath: IndexPath) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Delete Contact", style: .destructive, handler: { UIAlertAction in
+        actionSheet.addAction(UIAlertAction(title: constants.delete, style: .destructive, handler: { UIAlertAction in
                     ContactCRUD.contactCRUD.deleteContact(indexPath: indexPath)
                     self.contactDetailVC?.popToRootVC()
                     self.dismiss(animated: true)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: constants.cancel, style: .cancel))
         
         present(actionSheet, animated: true)
     }
@@ -94,7 +94,7 @@ extension AddContactVC {
             }
         }
         
-        performSegue(withIdentifier: "labelsVC", sender: nil)
+        performSegue(withIdentifier: constants.labelsVC, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

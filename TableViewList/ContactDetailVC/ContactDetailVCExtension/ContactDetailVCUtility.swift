@@ -15,7 +15,7 @@ extension ContactDetailVC {
     //set values in of name and text
     func setDataValues() {
         nameLabel.text = {
-            if data?.0.getFullName() == "#" {
+            if data?.0.getFullName() == constants.defaultName {
                 return ""
             }
             return data?.0.getFullName()
