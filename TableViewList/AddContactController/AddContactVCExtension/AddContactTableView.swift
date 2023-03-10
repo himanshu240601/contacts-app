@@ -100,6 +100,8 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.textField.placeholder = placeholderText[indexPath.row]
+        cell.textField.tag = indexPath.row+1
+        cell.textField.delegate = self
     
         //set padding in the text fields
         setPaddingToTextField(cell: cell)
