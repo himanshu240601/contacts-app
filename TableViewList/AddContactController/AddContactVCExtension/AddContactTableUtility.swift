@@ -71,11 +71,11 @@ extension AddContactVC {
     }
     
     //delete contact
-    func deleteContact(indexPath: IndexPath) {
+    func deleteContact(data: Contacts) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: constants.delete, style: .destructive, handler: { UIAlertAction in
-                    ContactCRUD.contactCRUD.deleteContact(indexPath: indexPath)
+            ContactCRUD.contactCRUD.deleteContact(id: data.id)
                     self.contactDetailVC?.popToRootVC()
                     self.dismiss(animated: true)
         }))
@@ -106,5 +106,6 @@ extension AddContactVC {
     
     func setContactTypeValue(_ text: String){
         addContactCellsArr[buttonTag]?.phoneTypeButton.setTitle(text, for: .normal)
+        doneButton.isEnabled = true
     }
 }

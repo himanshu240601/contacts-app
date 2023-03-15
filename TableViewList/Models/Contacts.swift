@@ -11,6 +11,7 @@ import UIKit
 class Contacts {
     
     // MARK: properties
+    var id: UUID
     var firstname: String
     var lastname: String
     var mobile: [(String, String)]
@@ -19,7 +20,8 @@ class Contacts {
     let constants = Constants()
     
     // MARK: initializers
-    init(firstname: String, lastname: String, mobile: [(String, String)], image: UIImage) {
+    init(id: UUID, firstname: String, lastname: String, mobile: [(String, String)], image: UIImage) {
+        self.id = id
         self.firstname = firstname
         self.lastname = lastname
         self.mobile = mobile

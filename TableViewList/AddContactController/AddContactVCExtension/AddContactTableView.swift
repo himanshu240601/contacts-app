@@ -41,8 +41,8 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            if let index = data?.1 {
-                deleteContact(indexPath: index)
+            if let data = data?.0{
+                deleteContact(data: data)
             }
         }
         

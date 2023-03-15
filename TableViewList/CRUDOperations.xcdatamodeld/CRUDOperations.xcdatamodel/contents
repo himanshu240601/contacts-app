@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ContactInfo" representedClassName="ContactInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="contact" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="contactToPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonInfo" inverseName="personToContact" inverseEntity="PersonInfo"/>
+    </entity>
+    <entity name="PersonInfo" representedClassName="PersonInfo" syncable="YES">
+        <attribute name="firstname" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="lastname" optional="YES" attributeType="String"/>
+        <relationship name="personToContact" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContactInfo" inverseName="contactToPerson" inverseEntity="ContactInfo"/>
+    </entity>
+</model>

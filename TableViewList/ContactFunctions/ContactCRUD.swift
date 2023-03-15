@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 class ContactCRUD {
@@ -16,58 +17,241 @@ class ContactCRUD {
     let sortContacts = SortContacts.sortContacts
     var contactObjectsArray = [Contacts]()
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     // MARK: initializers
     private init() {}
+    
+    // fetch phone numbers from ContactInfo
+    func phoneNumbers(id: UUID, managedContext: NSManagedObjectContext) -> [ContactInfo] {
+        
+        let request: NSFetchRequest<ContactInfo> = ContactInfo.fetchRequest()
+    
+        request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
+        var fetchedData : [ContactInfo] = []
+        do {
+            fetchedData = try managedContext.fetch(request)
+        } catch let error {
+            print("Error fetching songs \(error)")
+        }
+        
+        return fetchedData
+    }
+    
+    // updatae phone numbers from ContactInfo
+    func updatePhoneNumbers(id: UUID, managedContext: NSManagedObjectContext, numbers: [(String, String)], test: [NSFetchRequestResult]){
+        
+        let request: NSFetchRequest<ContactInfo> = ContactInfo.fetchRequest()
+    
+        request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
+        
+        do {
+            let fetchedData = try managedContext.fetch(request)
+            var contactData = fetchedData as [NSManagedObject]
+            let tempContactData = contactData
+            //check if numbers count is less than current exisint contact count in the database
+            if numbers.count < contactData.count {
+                
+                //delete contacts from existing record
+                var ind = 0
+                for contact in tempContactData {
+                    var delete = true
+                    for number in numbers {
+                        let cont = contact.value(forKey: "contact") as! String
+                        let type = contact.value(forKey: "type") as! String
+                        if cont == number.1 && cont == number.0 {
+                            delete = false
+                        }
+                    }
+                    
+                    // if not found in the numbers array
+                    // then delete that contact record
+                    if delete {
+                        managedContext.delete(contactData[ind])
+                        contactData.remove(at: ind)
+                    }else {
+                        ind += 1
+                    }
+                }
+            }
+            
+            for (i, contact) in contactData.enumerated() {
+                contact.setValue(id, forKey: "id")
+                contact.setValue(numbers[i].0, forKey: "type")
+                contact.setValue(numbers[i].1, forKey: "contact")
+            }
+            
+            // if numbers count is greate thant contactsData
+            // then add the number to the contact list
+            if numbers.count > contactData.count {
+                //get count of new contacts to add
+                let addCount = numbers.count - contactData.count
+                
+                
+                let personInfo = test[0] as! PersonInfo
+                
+                for i in contactData.count..<(contactData.count+addCount) {
+                    
+                    let contactInfo = ContactInfo(context: managedContext)
+                    
+                    contactInfo.id = personInfo.id
+                    contactInfo.type = numbers[i].0
+                    contactInfo.contact = numbers[i].1
+                    
+                    personInfo.addToPersonToContact(contactInfo)
+                }
+            }
+            
+        } catch let error {
+            print("Error fetching songs \(error)")
+        }
+    }
+    
+    // fetch all the contacts data to dislplay in the views
+    func fetchContacts() {
+        contactObjectsArray = []
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonInfo")
+        
+        do {
+            let result = try context.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                //storing the values in temp variables
+                let id = data.value(forKey: "id") as! UUID
+                let firstname = data.value(forKey: "firstname") as! String
+                let lastname = data.value(forKey: "lastname") as! String
+                let mobileTemp =  phoneNumbers(id: id, managedContext: context)
+                let image = UIImage(data: data.value(forKey: "image") as! Data)!
+                
+                //an array to store mobile numbers in type [(String, Stirng)]
+                var mobile: [(String, String)] = []
+                
+                //iterating over the mobileTemp array that contains instances to ContactInfo
+                for mob in mobileTemp {
+                    mobile.append((mob.type!, mob.contact!))
+                }
+                
+                //instance to contact model class
+                let contact = Contacts(
+                    id: id,
+                    firstname: firstname,
+                    lastname: lastname,
+                    mobile: mobile,
+                    image: image
+                )
+                // append values to the contactsObjectArray
+                contactObjectsArray.append(contact)
+            }
+            
+            //finally sort the array and reload the data
+            sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
+        }catch {
+            print("Failed")
+        }
+    }
     
     // MARK: methods
     func addContact(firstname: String, lastname: String,
                     number: [(String, String)],
                     image: UIImage) {
-        let contact = Contacts(firstname: firstname, lastname: lastname, mobile: number, image: image)
-        contactObjectsArray.insert(contact, at: 0)
-        sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //instance of personInfo to set the properties
+        let personInfo = PersonInfo(context: context)
+        personInfo.id = UUID()
+        personInfo.firstname = firstname
+        personInfo.lastname = lastname
+        personInfo.image = image.pngData()
+        
+        //getting the contacts from [(String, String)] type array and storing in contactInfo
+        //that gets added to the personInfo's relation personToContact
+        for num in number {
+            let contactInfo = ContactInfo(context: context)
+            
+            contactInfo.id = personInfo.id
+            contactInfo.type = num.0
+            contactInfo.contact = num.1
+            
+            personInfo.addToPersonToContact(contactInfo)
+        }
+        
+        do {
+            try context.save()
+            print("Contact Saved")
+            fetchContacts()
+        }catch {
+            print("Error Saving Contact")
+        }
+        
     }
     
-    // MARK: currently not using this function
-    func deleteContact(indexPath: IndexPath) {
-        let contact = sortContacts
-            .sortedContactList[
-                sortContacts.sectionTitles[indexPath.section]
-            ]?.remove(at: indexPath.row)
+    func deleteContact(id: UUID) {
+        //create a context from this container
+        let managedContext = appDelegate.persistentContainer.viewContext
         
-//        removing elements from the data
-//        so no element is regenerated when a new value
-//        is added
-        for i in 0..<contactObjectsArray.count {
-            if (contact?.getFullName() == contactObjectsArray[i].getFullName()) {
-                contactObjectsArray.remove(at: i)
-                break
+        //prepare the fetch request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonInfo")
+        
+        fetchRequest.predicate = NSPredicate(format: "id = %@", id as CVarArg)
+        
+        do {
+            //get the results based on the predicate format
+            let test = try managedContext.fetch(fetchRequest)
+            
+            let objectToDelete = test[0] as! NSManagedObject
+            
+            managedContext.delete(objectToDelete)
+            
+            do {
+                try managedContext.save()
+                print("Contact Removed")
+                fetchContacts()
             }
+            catch {
+                print(error)
+            }
+        }catch {
+            print(error)
         }
-        
-//        remove entire key from sortContactList
-        if sortContacts
-            .sortedContactList[
-                sortContacts.sectionTitles[indexPath.section]
-            ]?.count == 0{
-
-            sortContacts.sortedContactList.removeValue(forKey: sortContacts.sectionTitles[indexPath.section])
-        }
-        
-        sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
     }
     
-    func updateContact(
-        contact: Contacts,
-        firstname: String, lastname: String,
+    func updateContact(id: UUID, firstname: String, lastname: String,
                         number: [(String, String)],
                         image: UIImage
     ) {
-        contact.firstname = firstname
-        contact.lastname = lastname
-        contact.mobile = number
-        contact.image = image
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //fetch request for the personInfo
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonInfo")
+        //get result based on the id
+        fetchRequest.predicate = NSPredicate(format: "id = %@", id as CVarArg)
+        
+        do {
+            let test = try context.fetch(fetchRequest)
+            
+            let personInfo = test[0] as! NSManagedObject
+            
+            //update the values
+            personInfo.setValue(firstname, forKey: "firstname")
+            personInfo.setValue(lastname, forKey: "lastname")
+            personInfo.setValue(image.pngData(), forKey: "image")
 
-        sortContacts.createSectionTitles(contactsCRUD: ContactCRUD.contactCRUD)
+            //update the numbers
+            updatePhoneNumbers(id: id, managedContext: context, numbers: number, test: test)
+            
+            do {
+                try context.save()
+                print("Contact Updated")
+                fetchContacts()
+            }
+            catch {
+                print("Couldn't Update Contact")
+            }
+        }catch {
+            print("Error Updating Contact")
+        }
     }
 }

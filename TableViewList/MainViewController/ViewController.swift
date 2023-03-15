@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: class objects
-    let staticData = StaticData()
     let contactsCrud = ContactCRUD.contactCRUD
     let alertActions = AlertActions()
     let sortContacts = SortContacts.sortContacts
@@ -35,10 +34,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         searchController.searchBar.searchTextField.addTarget(self, action: #selector(filterData), for: .editingChanged)
         searchController.searchBar.delegate = self
         
-        
-        //generate random data
-        staticData.generateDummyData(contactsCrud: contactsCrud)
-        sortContacts.createSectionTitles(contactsCRUD: contactsCrud)
+        contactsCrud.fetchContacts()
         
         resetData()
     }

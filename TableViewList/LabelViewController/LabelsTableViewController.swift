@@ -27,6 +27,7 @@ class LabelsTableViewController: UIViewController, UITableViewDelegate, UITableV
         "Other"
     ]
     var addContactVC: AddContactVC?
+    
     let constants = Constants()
     
     // MARK: lifecycle methods

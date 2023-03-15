@@ -87,7 +87,12 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         if let data = data?.0 {
             ContactCRUD
                 .contactCRUD
-                .updateContact(contact: data, firstname: firstName, lastname: lastName, number: number, image: image!)
+                .updateContact(id: data.id ,firstname: firstName, lastname: lastName, number: number, image: image!)
+            
+            data.firstname = firstName
+            data.lastname = lastName
+            data.mobile = number
+            data.image = image!
         }
         else if viewControllerInst != nil {
             ContactCRUD
