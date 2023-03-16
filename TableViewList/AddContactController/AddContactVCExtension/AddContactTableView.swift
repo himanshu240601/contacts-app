@@ -81,7 +81,6 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
             cell.phoneTextField.keyboardType = .phonePad
             
             cell.phoneTextField.addTarget(self, action: #selector(changeDoneButtonState), for: .editingChanged)
-            cell.phoneTypeButton.tag = indexPath.row
             
             cell.phoneTypeButton.addTarget(self, action: #selector(goToLabelsVC), for: .touchUpInside)
             
@@ -100,7 +99,6 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.textField.placeholder = placeholderText[indexPath.row]
-        cell.textField.tag = indexPath.row+1
         cell.textField.delegate = self
     
         //set padding in the text fields
@@ -125,13 +123,30 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
         return false
     }
   
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             addContactCells -= 1
-            let numberDel = addContactCellsArr[indexPath.row]?.phoneTextField.text
-            let typeDel = addContactCellsArr[indexPath.row]?.phoneTypeButton.titleLabel?.text
-            addContactCellsArr.remove(at: indexPath.row)
             
+            let cell = tableView.cellForRow(at: indexPath) as? PhoneTextField
+            
+            let numberDel = cell?.phoneTextField.text
+            let typeDel = cell?.phoneTypeButton.titleLabel?.text
+            
+            
+            //remove number
+            for (i, value) in addContactCellsArr.enumerated() {
+                
+                let type = value?.phoneTypeButton.titleLabel?.text
+                let contact = value?.phoneTextField.text
+                
+                if (type == typeDel && contact == numberDel){
+                    
+                    addContactCellsArr.remove(at: i)
+                    break
+                    
+                }
+            }
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             

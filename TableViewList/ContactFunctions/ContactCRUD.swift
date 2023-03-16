@@ -44,7 +44,7 @@ class ContactCRUD {
     
     // updatae phone numbers from ContactInfo
     func updatePhoneNumbers(id: UUID, managedContext: NSManagedObjectContext, numbers: [(String, String)], test: [NSFetchRequestResult]){
-        var numbersArr = numbers
+
         let request: NSFetchRequest<ContactInfo> = ContactInfo.fetchRequest()
     
         request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
@@ -56,30 +56,27 @@ class ContactCRUD {
             contactData.sort{
                 $1.value(forKey: "type") as! String > $0.value(forKey: "type") as! String
             }
-            numbersArr.sort{
-                $1.0 > $0.0
-            }
-            
-            //update the numbers
-            let count = numbersArr.count < contactData.count ? numbersArr.count : contactData.count
-            for i in 0..<count {
-                contactData[i].setValue(id, forKey: "id")
-                contactData[i].setValue(numbersArr[i].0, forKey: "type")
-                contactData[i].setValue(numbersArr[i].1, forKey: "contact")
-            }
             
             //delete numbers
-            if contactData.count > numbersArr.count {
-                let deletions = contactData.count - numbersArr.count
+            if contactData.count > numbers.count {
+                let deletions = contactData.count - numbers.count
                 
-                for i in numbersArr.count..<(numbersArr.count+deletions) {
+                for i in numbers.count..<(numbers.count+deletions) {
                     managedContext.delete(contactData[i])
                 }
             }
             
+            //update the numbers
+            let count = numbers.count <= contactData.count ? numbers.count : contactData.count
+            for i in 0..<count {
+                contactData[i].setValue(id, forKey: "id")
+                contactData[i].setValue(numbers[i].0, forKey: "type")
+                contactData[i].setValue(numbers[i].1, forKey: "contact")
+            }
+            
             //add numbers
-            if contactData.count < numbersArr.count {
-                let addCount = numbersArr.count - contactData.count
+            if contactData.count < numbers.count {
+                let addCount = numbers.count - contactData.count
                 let personInfo = test[0] as! PersonInfo
                 
                 for i in contactData.count..<(contactData.count+addCount) {
