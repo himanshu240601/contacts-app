@@ -20,15 +20,19 @@ extension ViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath) as? ContactTableViewCell else {
+            fatalError("error")
+        }
         let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
-        cell.textLabel?
-            .text = {
+        let text = {
                 if contact?.getFullName() == constants.defaultName {
                     return contact?.mobile[0].1
                 }
                 return contact?.getFullName()
             }()
+        let image = contact?.image!
+        
+        cell.setData(image: image!, contact: text!)
         
         return cell
     }

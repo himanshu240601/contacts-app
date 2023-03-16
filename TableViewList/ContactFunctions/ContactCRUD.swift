@@ -35,12 +35,16 @@ class ContactCRUD {
             print("Error fetching songs \(error)")
         }
         
+        fetchedData.sort{
+            $1.value(forKey: "type") as! String > $0.value(forKey: "type") as! String
+        }
+        
         return fetchedData
     }
     
     // updatae phone numbers from ContactInfo
     func updatePhoneNumbers(id: UUID, managedContext: NSManagedObjectContext, numbers: [(String, String)], test: [NSFetchRequestResult]){
-        
+        var numbersArr = numbers
         let request: NSFetchRequest<ContactInfo> = ContactInfo.fetchRequest()
     
         request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
@@ -48,63 +52,90 @@ class ContactCRUD {
         do {
             let fetchedData = try managedContext.fetch(request)
             var contactData = fetchedData as [NSManagedObject]
-            let tempContactData = contactData
-            //check if numbers count is less than current exisint contact count in the database
-            if numbers.count < contactData.count {
+            
+            contactData.sort{
+                $1.value(forKey: "type") as! String > $0.value(forKey: "type") as! String
+            }
+            numbersArr.sort{
+                $1.0 > $0.0
+            }
+            
+            //update the numbers
+            let count = numbersArr.count < contactData.count ? numbersArr.count : contactData.count
+            for i in 0..<count {
+                contactData[i].setValue(id, forKey: "id")
+                contactData[i].setValue(numbersArr[i].0, forKey: "type")
+                contactData[i].setValue(numbersArr[i].1, forKey: "contact")
+            }
+            
+            //delete numbers
+            if contactData.count > numbersArr.count {
+                let deletions = contactData.count - numbersArr.count
                 
-                //delete contacts from existing record
-                var ind = 0
-                for contact in tempContactData {
-                    var delete = true
-                    for number in numbers {
-                        let cont = contact.value(forKey: "contact") as! String
-                        let type = contact.value(forKey: "type") as! String
-                        if cont == number.1 && cont == number.0 {
-                            delete = false
-                        }
-                    }
-                    
-                    // if not found in the numbers array
-                    // then delete that contact record
-                    if delete {
-                        managedContext.delete(contactData[ind])
-                        contactData.remove(at: ind)
-                    }else {
-                        ind += 1
-                    }
+                for i in numbersArr.count..<(numbersArr.count+deletions) {
+                    managedContext.delete(contactData[i])
                 }
             }
             
-            for (i, contact) in contactData.enumerated() {
-                contact.setValue(id, forKey: "id")
-                contact.setValue(numbers[i].0, forKey: "type")
-                contact.setValue(numbers[i].1, forKey: "contact")
-            }
-            
-            // if numbers count is greate thant contactsData
-            // then add the number to the contact list
-            if numbers.count > contactData.count {
-                //get count of new contacts to add
-                let addCount = numbers.count - contactData.count
-                
-                
+            //add numbers
+            if contactData.count < numbersArr.count {
+                let addCount = numbersArr.count - contactData.count
                 let personInfo = test[0] as! PersonInfo
                 
                 for i in contactData.count..<(contactData.count+addCount) {
-                    
                     let contactInfo = ContactInfo(context: managedContext)
-                    
+
                     contactInfo.id = personInfo.id
                     contactInfo.type = numbers[i].0
                     contactInfo.contact = numbers[i].1
-                    
+
                     personInfo.addToPersonToContact(contactInfo)
                 }
             }
             
         } catch let error {
-            print("Error fetching songs \(error)")
+            print("Error Fetching Contacts \(error)")
         }
+    }
+    
+    func fetchContact(id: UUID) -> Contacts? {
+        var contact: Contacts?
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonInfo")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", id as CVarArg)
+        do {
+            let result = try context.fetch(fetchRequest)
+            let data = result[0] as! NSManagedObject
+            
+            let id = data.value(forKey: "id") as! UUID
+            let firstname = data.value(forKey: "firstname") as! String
+            let lastname = data.value(forKey: "lastname") as! String
+            let mobileTemp =  phoneNumbers(id: id, managedContext: context)
+            let image = UIImage(data: data.value(forKey: "image") as! Data)!
+            
+            //an array to store mobile numbers in type [(String, Stirng)]
+            var mobile: [(String, String)] = []
+            
+            //iterating over the mobileTemp array that contains instances to ContactInfo
+            for mob in mobileTemp {
+                mobile.append((mob.type!, mob.contact!))
+            }
+            
+            //instance to contact model class
+            contact = Contacts(
+                id: id,
+                firstname: firstname,
+                lastname: lastname,
+                mobile: mobile,
+                image: image
+            )
+        }catch {
+            print("Failed")
+        }
+        
+        return contact
     }
     
     // fetch all the contacts data to dislplay in the views

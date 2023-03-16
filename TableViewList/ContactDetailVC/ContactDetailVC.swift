@@ -49,7 +49,10 @@ class ContactDetailVC: UIViewController {
             return
         }
         destinationViewController.hideTitle = true
-        destinationViewController.data = self.data
+        if let id = data?.0.id, let index = data?.1 {
+            destinationViewController.data = (id, index)
+        }
+        
         destinationViewController.contactDetailVC = self
     }
 }

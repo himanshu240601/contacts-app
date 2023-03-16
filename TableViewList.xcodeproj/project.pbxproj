@@ -30,6 +30,7 @@
 		6A84DB1829B214E00071D2B6 /* LabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */; };
 		6A8706F629C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8706F429C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift */; };
 		6A8706F729C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8706F529C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift */; };
+		6AC16B1329C3188B00072A52 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC16B1229C3188B00072A52 /* ContactTableViewCell.swift */; };
 		6AC8168129B9A87600EAA835 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8168029B9A87600EAA835 /* Constants.swift */; };
 		6AD86BF929A5D64B001965E6 /* SortContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BF829A5D64B001965E6 /* SortContacts.swift */; };
 		6AD86BFE29A612C3001965E6 /* ViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BFD29A612C3001965E6 /* ViewControllerTableView.swift */; };
@@ -83,6 +84,7 @@
 		6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsTableViewController.swift; sourceTree = "<group>"; };
 		6A8706F429C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A8706F529C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6AC16B1229C3188B00072A52 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		6AC8168029B9A87600EAA835 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6AD86BF829A5D64B001965E6 /* SortContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContacts.swift; sourceTree = "<group>"; };
 		6AD86BFD29A612C3001965E6 /* ViewControllerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,14 @@
 			path = LabelViewController;
 			sourceTree = "<group>";
 		};
+		6AC16B1129C3187C00072A52 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				6AC16B1229C3188B00072A52 /* ContactTableViewCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		6AC8167F29B9A86600EAA835 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +279,7 @@
 		6AD86C0729A6159A001965E6 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6AC16B1129C3187C00072A52 /* CustomCell */,
 				6AD86BFC29A612A4001965E6 /* ViewControllerExtension */,
 				6A27297D29A47F2A000B62D1 /* ViewController.swift */,
 			);
@@ -430,6 +441,7 @@
 				6AD86C0529A614E8001965E6 /* ContactDetailVCUtility.swift in Sources */,
 				6A8706F629C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift in Sources */,
 				6A66229029B0688800C814A5 /* TableView+ContactCell.swift in Sources */,
+				6AC16B1329C3188B00072A52 /* ContactTableViewCell.swift in Sources */,
 				6A27297C29A47F2A000B62D1 /* SceneDelegate.swift in Sources */,
 				6AC8168129B9A87600EAA835 /* Constants.swift in Sources */,
 			);

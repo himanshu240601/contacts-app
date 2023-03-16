@@ -29,7 +29,8 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     //data from previous controller (ContactDetailVC)
     //in case the previous controller is Root VC
     //then the data will be nil
-    var data: (Contacts, IndexPath)?
+    var data: (UUID, IndexPath)?
+    var contactData: Contacts?
     var contactDetailVC: ContactDetailVC?
     var viewControllerInst: ViewController?
     let constants = Constants()
@@ -45,12 +46,18 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         
         //change text of 'Add Photo' button
         //if the image is not default
-        if data != nil {
-            if data?.0.image != UIImage(systemName: constants.defaultImage) {
-                addImageButton.setTitle(constants.editTitle, for: .normal)
-                imageView.image = data?.0.image
+        if let id = data?.0 {
+            if let contactResult = ContactCRUD.contactCRUD.fetchContact(id: id){
+                contactData = contactResult
             }
-            addContactCells += data?.0.mobile.count ?? 0
+            
+            if let contactInfo = contactData {
+                if contactInfo.image != UIImage(systemName: constants.defaultImage) {
+                    addImageButton.setTitle(constants.editTitle, for: .normal)
+                    imageView.image = contactInfo.image
+                }
+                addContactCells += contactInfo.mobile.count
+            }
         }
         
         //hide title if previous view controller is ContactDetailVC
@@ -87,12 +94,16 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         if let data = data?.0 {
             ContactCRUD
                 .contactCRUD
-                .updateContact(id: data.id ,firstname: firstName, lastname: lastName, number: number, image: image!)
+                .updateContact(id: data ,firstname: firstName, lastname: lastName, number: number, image: image!)
             
-            data.firstname = firstName
-            data.lastname = lastName
-            data.mobile = number
-            data.image = image!
+            if let update = contactDetailVC?.data?.0 {
+                update.firstname = firstName
+                update.lastname = lastName
+                update.mobile = number.sorted{
+                    $1.0 > $0.0
+                }
+                update.image = image!
+            }
         }
         else if viewControllerInst != nil {
             ContactCRUD

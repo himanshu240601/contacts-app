@@ -10,36 +10,35 @@ import UIKit
 extension AddContactVC {
     
     func setData(_ indexPath: IndexPath, _ cell: PhoneTextField){
-        if data != nil && data?.0.mobile.count == addContactCells - 1 {
-            if let type = data?.0.mobile[indexPath.row].0 {
-                cell.phoneTypeButton.setTitle(type, for: .normal)
+            if let contactInfo = contactData {
+                if contactInfo.mobile.count == addContactCells - 1 {
+                    
+                    cell.phoneTypeButton
+                        .setTitle(contactInfo.mobile[indexPath.row].0, for: .normal)
+                    cell.phoneTextField
+                        .text = contactInfo.mobile[indexPath.row].1
+    
+                }
+                else {
+                    cell.phoneTypeButton
+                        .setTitle(constants.defaultMobileType, for: .normal)
+                    cell.phoneTextField
+                        .text = ""
+                }
             }
-            if let number = data?.0.mobile[indexPath.row].1 {
-                cell.phoneTextField.text = number
-            }
-        } else {
-            cell.phoneTypeButton.setTitle(constants.defaultMobileType, for: .normal)
-            cell.phoneTextField.text = ""
-        }
     }
     
     func setData(_ indexPath: IndexPath, _ cell: TextFieldCell) {
-        if data != nil {
-            switch indexPath.row{
-            case 0:
-                guard let name = data?.0.firstname else {
-                    return
+        if let contactInfo = contactData {
+                switch indexPath.row{
+                case 0:
+                    cell.textField.text = contactInfo.firstname
+                case 1:
+                    cell.textField.text = contactInfo.lastname
+                default:
+                    break
                 }
-                cell.textField.text = name
-            case 1:
-                guard let name = data?.0.lastname else {
-                    return
-                }
-                cell.textField.text = name
-            default:
-                break
             }
-        }
     }
     
     func setPaddingToTextField(cell: TextFieldCell) {
@@ -71,11 +70,11 @@ extension AddContactVC {
     }
     
     //delete contact
-    func deleteContact(data: Contacts) {
+    func deleteContact(data: UUID) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: constants.delete, style: .destructive, handler: { UIAlertAction in
-            ContactCRUD.contactCRUD.deleteContact(id: data.id)
+            ContactCRUD.contactCRUD.deleteContact(id: data)
                     self.contactDetailVC?.popToRootVC()
                     self.dismiss(animated: true)
         }))

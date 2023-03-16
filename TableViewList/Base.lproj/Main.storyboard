@@ -18,13 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact" id="sAc-4i-btj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact" id="sAc-4i-btj" customClass="ContactTableViewCell" customModule="TableViewList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sAc-4i-btj" id="nAs-Bu-jx4">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4H7-Ym-X2G">
+                                            <rect key="frame" x="12" y="6" width="34" height="32.666666666666671"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="7el-Ti-xg2"/>
+                                                <constraint firstAttribute="width" constant="34" id="Pyn-Zm-9iG"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eg2-68-ORB">
+                                            <rect key="frame" x="58" y="12.333333333333334" width="303" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eg2-68-ORB" firstAttribute="leading" secondItem="4H7-Ym-X2G" secondAttribute="trailing" constant="12" id="COi-Vn-sgc"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eg2-68-ORB" secondAttribute="trailing" constant="12" id="O6l-ca-Zna"/>
+                                        <constraint firstItem="4H7-Ym-X2G" firstAttribute="centerY" secondItem="nAs-Bu-jx4" secondAttribute="centerY" id="Rww-hy-ta7"/>
+                                        <constraint firstItem="4H7-Ym-X2G" firstAttribute="leading" secondItem="nAs-Bu-jx4" secondAttribute="leading" constant="12" id="e34-Ei-uqi"/>
+                                        <constraint firstItem="eg2-68-ORB" firstAttribute="centerY" secondItem="nAs-Bu-jx4" secondAttribute="centerY" id="w0m-jJ-2UU"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="personContact" destination="eg2-68-ORB" id="chs-RN-z1F"/>
+                                    <outlet property="personImage" destination="4H7-Ym-X2G" id="5rL-6Y-lRk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,7 +73,7 @@
             <objects>
                 <viewController id="G9R-8O-5Ih" customClass="AddContactVC" customModule="TableViewList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sEH-wF-5zy">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-P3-KUl">
@@ -97,7 +123,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ptc-BJ-QIk">
-                                <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="550.33333333333326"/>
+                                <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="515.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -521,7 +547,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4an-E4-DFk"/>
+        <segue reference="8IT-QE-WJe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>

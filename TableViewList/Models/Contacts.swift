@@ -20,6 +20,7 @@ class Contacts {
     let constants = Constants()
     
     // MARK: initializers
+    
     init(id: UUID, firstname: String, lastname: String, mobile: [(String, String)], image: UIImage) {
         self.id = id
         self.firstname = firstname

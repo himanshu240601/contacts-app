@@ -17,7 +17,7 @@ extension ViewController{
         
         resetData()
         
-        if text != "" {
+        if text.trimmingCharacters(in: .whitespaces) != "" {
             for (key, _) in sortedContactListTemp {
                 sortedContactListTemp[key] = sortedContactListTemp[key]?.filter{
                     $0.getFullName().lowercased().contains(text.lowercased())

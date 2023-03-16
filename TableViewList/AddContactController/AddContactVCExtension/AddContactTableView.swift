@@ -132,20 +132,24 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
             let typeDel = addContactCellsArr[indexPath.row]?.phoneTypeButton.titleLabel?.text
             addContactCellsArr.remove(at: indexPath.row)
             
+            
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             
-            if data?.0.mobile.count ?? 0 > 0 {
-                var number = getPhoneNumbers()
-                
-                //remove number
-                for (i, value) in number.enumerated() {
-                    if (value.0 == typeDel && value.1 == numberDel){
-                        number.remove(at: i)
-                        break
+            if let contactInfo = contactData {
+                if contactInfo.mobile.count > 0 {
+                    var number = getPhoneNumbers()
+                    
+                    //remove number
+                    for (i, value) in number.enumerated() {
+                        if (value.0 == typeDel && value.1 == numberDel){
+                            number.remove(at: i)
+                            break
+                        }
                     }
+                    contactInfo.mobile = number
                 }
-                data?.0.mobile = number
             }
+            
             changeDoneButtonState()
         }
     }
