@@ -12,4 +12,9 @@ class TableViewContactCell: UITableViewCell{
     // MARK: outlets
     @IBOutlet weak var contactTypeLabel: UILabel!
     @IBOutlet weak var mobileNumberLabel: UILabel!
+    
+    func setData(type: String, mobile: String){
+        contactTypeLabel.text = type
+        mobileNumberLabel.text = mobile
+    }
 }

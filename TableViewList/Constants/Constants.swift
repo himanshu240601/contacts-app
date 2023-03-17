@@ -40,4 +40,25 @@ struct Constants {
     
     // MARK: error messages
     let cellDequeueError = "Error"
+    
+    // MARK: coredata entities
+    let personInfo = "PersonInfo"
+    let predicateMatchID = "id = %@"
+    // properties in core data
+    let id = "id"
+    let firstname = "firstname"
+    let lastname = "lastname"
+    let image = "image"
+    let type = "type"
+    let cont = "contact"
+    // errors
+    let errorWhileFetch = "Error Fetching Data"
+    let errorWhileSaving = "Error Saving Contact"
+    let errorWhileRemoving = "Error Removing Contact"
+    let errorWhileUpdating = "Error Updating Contact"
+    // log
+    let recordFetched = "Contact Fetched"
+    let recordSaved = "Contact Saved"
+    let recordRemoved = "Contact Removed"
+    let recordUpdated = "Contact Updated"
 }

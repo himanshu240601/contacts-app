@@ -13,4 +13,9 @@ class PhoneTextField: UITableViewCell {
     
     @IBOutlet weak var phoneTextField: UITextField!
     
+    
+    func setDataForFields(type: String, number: String) {
+        phoneTypeButton.setTitle(type, for: .normal)
+        phoneTextField.text = number
+    }
 }

@@ -18,9 +18,10 @@ extension ContactDetailVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath) as? TableViewContactCell else {
             fatalError(constants.cellDequeueError)
         }
-        
-        cell.contactTypeLabel.text = contactArr[indexPath.row].0
-        cell.mobileNumberLabel.text = contactArr[indexPath.row].1
+        cell.setData(
+                type: contactArr[indexPath.row].0,
+                mobile: contactArr[indexPath.row].1
+            )
         
         return cell
     }

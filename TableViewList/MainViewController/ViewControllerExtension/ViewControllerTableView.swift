@@ -21,7 +21,7 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: constants.contact, for: indexPath) as? ContactTableViewCell else {
-            fatalError("error")
+            fatalError(constants.cellDequeueError)
         }
         let contact = sortedContactListTemp[sectionTitlesTemp[indexPath.section]]?[indexPath.row]
         let text = {

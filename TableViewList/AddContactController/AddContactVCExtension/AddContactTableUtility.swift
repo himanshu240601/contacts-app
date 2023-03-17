@@ -8,22 +8,23 @@
 import UIKit
 
 extension AddContactVC {
-    
+    //set data to textfields and buttons type
     func setData(_ indexPath: IndexPath, _ cell: PhoneTextField){
             if let contactInfo = contactData {
                 if contactInfo.mobile.count == addContactCells - 1 {
                     
-                    cell.phoneTypeButton
-                        .setTitle(contactInfo.mobile[indexPath.row].0, for: .normal)
-                    cell.phoneTextField
-                        .text = contactInfo.mobile[indexPath.row].1
+                    cell.setDataForFields(
+                        type: contactInfo.mobile[indexPath.row].0,
+                        number: contactInfo.mobile[indexPath.row].1
+                    )
     
                 }
                 else {
-                    cell.phoneTypeButton
-                        .setTitle(constants.defaultMobileType, for: .normal)
-                    cell.phoneTextField
-                        .text = ""
+                    
+                    cell.setDataForFields(
+                        type: constants.defaultMobileType,
+                        number: ""
+                    )
                 }
             }
     }
