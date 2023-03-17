@@ -37,7 +37,7 @@ class Contacts {
             return firstname
         }
         else if firstname != "" && lastname != ""{
-            return lastname + " " + firstname
+            return firstname + " " + lastname
         }
         return constants.defaultName
     }
