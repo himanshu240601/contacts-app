@@ -79,9 +79,8 @@ extension AddContactVC: UITableViewDelegate, UITableViewDataSource {
                 fatalError(constants.cellDequeueError)
             }
             cell.phoneTextField.keyboardType = .phonePad
-            
+            cell.phoneTextField.delegate = self
             cell.phoneTextField.addTarget(self, action: #selector(changeDoneButtonState), for: .editingChanged)
-            
             cell.phoneTypeButton.addTarget(self, action: #selector(goToLabelsVC), for: .touchUpInside)
             
             addContactCellsArr.insert(cell, at: 0)

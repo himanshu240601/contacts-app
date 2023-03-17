@@ -2,7 +2,7 @@
 //  PersonInfo+CoreDataProperties.swift
 //  TableViewList
 //
-//  Created by Nitin on 3/15/23.
+//  Created by Himanshu on 3/15/23.
 //
 //
 

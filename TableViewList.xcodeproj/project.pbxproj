@@ -30,6 +30,7 @@
 		6A84DB1829B214E00071D2B6 /* LabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */; };
 		6A8706F629C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8706F429C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift */; };
 		6A8706F729C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8706F529C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift */; };
+		6A8F80E129C4277400DB033E /* AddContactKeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8F80E029C4277400DB033E /* AddContactKeyboardHandler.swift */; };
 		6AC16B1329C3188B00072A52 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC16B1229C3188B00072A52 /* ContactTableViewCell.swift */; };
 		6AC8168129B9A87600EAA835 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8168029B9A87600EAA835 /* Constants.swift */; };
 		6AD86BF929A5D64B001965E6 /* SortContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD86BF829A5D64B001965E6 /* SortContacts.swift */; };
@@ -84,6 +85,7 @@
 		6A84DB1729B214E00071D2B6 /* LabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsTableViewController.swift; sourceTree = "<group>"; };
 		6A8706F429C18FBC00B5F93F /* PersonInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A8706F529C18FBC00B5F93F /* PersonInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6A8F80E029C4277400DB033E /* AddContactKeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactKeyboardHandler.swift; sourceTree = "<group>"; };
 		6AC16B1229C3188B00072A52 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		6AC8168029B9A87600EAA835 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6AD86BF829A5D64B001965E6 /* SortContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContacts.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				6A66229E29B0965F00C814A5 /* AddContactTableView.swift */,
 				6A6622A029B09FF600C814A5 /* AddContactImagePicker.swift */,
 				6A84DB1229B1FC000071D2B6 /* AddContactTableUtility.swift */,
+				6A8F80E029C4277400DB033E /* AddContactKeyboardHandler.swift */,
 			);
 			path = AddContactVCExtension;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				6A84DB1329B1FC000071D2B6 /* AddContactTableUtility.swift in Sources */,
 				6A84DB1129B1CE360071D2B6 /* PhoneTextFieldCell.swift in Sources */,
 				6A0A68DA29B9B1A80019C0E7 /* CRUDOperations.xcdatamodeld in Sources */,
+				6A8F80E129C4277400DB033E /* AddContactKeyboardHandler.swift in Sources */,
 				6A66229929B0845400C814A5 /* TextFieldCell.swift in Sources */,
 				6A6622A129B09FF600C814A5 /* AddContactImagePicker.swift in Sources */,
 				6A01BD5229A4AD7E00B51AFF /* AlertActions.swift in Sources */,

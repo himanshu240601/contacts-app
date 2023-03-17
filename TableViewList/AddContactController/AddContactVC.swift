@@ -19,6 +19,7 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
     @IBOutlet weak var titleLabel: UILabel!
     
     var hideTitle: Bool = false
+    var handleKeyboardForTextField: UITextField!
     
     // MARK: properties
     var placeholderText = ["First Name", "Last Name", "Company"]
@@ -141,38 +142,5 @@ class AddContactVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         }
         
         return numbersArr
-    }
-}
-
-// MARK: extension for keyboard handling
-extension AddContactVC: UITextFieldDelegate {
-    
-    func initializeHideKeyboard(){
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(dismissMyKeyboard))
-        
-        //to set the tap gesture recognizer in view
-        view.addGestureRecognizer(tap)
-        
-        //to make the table view touch respond
-        tap.cancelsTouchesInView = false
-    }
-    
-    @objc func dismissMyKeyboard(){
-        view.endEditing(true)
-    }
-    
-    //return key in keyboard
-    //when clicked
-    //check for next text fields and move to them
-    //in the end dismiss keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        return false
     }
 }
